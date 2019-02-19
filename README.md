@@ -2,7 +2,7 @@
 
 All search methods are based on this graph:
 
-![alt text] [graph]
+![alt text][graph]
 
 ## Deterministic Method: Uniform Cost Search 
 

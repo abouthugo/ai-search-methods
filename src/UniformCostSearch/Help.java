@@ -35,7 +35,7 @@ public class Help {
         B.neighbors = new Edge[]{
                 new Edge(Y, 2),
                 new Edge(E, 2),
-                new Edge(E, 20),
+                new Edge(D, 20),
         };
         E.neighbors = new Edge[]{
                 new Edge(B, 2),

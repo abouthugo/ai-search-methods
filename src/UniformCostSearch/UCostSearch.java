@@ -20,7 +20,6 @@ public class UCostSearch {
     public static void Search(Node source){
         // Priority queue organizes the nodes by minimum path cost
         Queue<Node> queue = new PriorityQueue<>(20, comp);
-        Queue<Node> found = new PriorityQueue<>(10, comp);
 
 
         // To keep track of the nodes that have been visited
@@ -30,13 +29,13 @@ public class UCostSearch {
          * Initial State
          * =============
          */
-        System.out.println("Initial state: " + queue);
         queue.add(source);
         source.pathCost = 0;
+        System.out.println("Initial state: " + queue);
 
 
         while(!queue.isEmpty()){
-            System.out.println("Popped: " + queue.peek());
+            System.out.println("Visiting: " + queue.peek());
             Node current = queue.poll(); // get the node with the lowest cost path in the queue
             visited.add(current);
 
@@ -44,21 +43,24 @@ public class UCostSearch {
             for(Edge e : current.neighbors){
                 Node child = e.target;
                 int cost = e.cost;
+                System.out.println("Child: " + child + "\t Initial cost: " + cost);
                 child.pathCost = current.pathCost + cost; // aggregate the cost
+                System.out.println("Child: " + child + "\t Aggregated cost: " + child.pathCost);
 
 
 
                 if(!visited.contains(child) && !queue.contains(child)){ // Newly introduced node
                     child.parent = current;
                     queue.add(child);
-                    System.out.println("New child "+ child +" with cost: " + child.pathCost);
+                    System.out.println("A ->"+ child +": " + child.pathCost);
                 }
                 else if(queue.contains(child) && child.pathCost>current.pathCost){
                     // Previously introduced node that is still in queue
                     child.parent = current;
                     queue.remove(child);
-                    System.out.println("Removing: " + child);
+                    System.out.println("Removing: " + child + "(" + child.pathCost + ">" + current.pathCost + ")");
                     queue.add(child);
+                    System.out.println("Adding to queue child: "+ child +" with cost: " + child.pathCost);
                 }
 
             }
@@ -77,6 +79,7 @@ public class UCostSearch {
         Collections.reverse(path);
         System.out.println("Path: " + path);
         System.out.println("Cost: " + cost);
+        System.out.println("Goal: " + goal);
     }
 
 

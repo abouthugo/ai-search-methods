@@ -1,6 +1,13 @@
 package UniformCostSearch;
 
+import java.util.Comparator;
+
 public class Help {
+    public static Comparator<Node> comp =  (Node a, Node b) -> {
+        if(a.pathCost>b.pathCost) return 1;
+        else if(a.pathCost<b.pathCost) return -1;
+        else return 0;
+    };
     public static final Node A = new Node("A");
     public static final Node B = new Node("B");
     public static final Node C = new Node("C");

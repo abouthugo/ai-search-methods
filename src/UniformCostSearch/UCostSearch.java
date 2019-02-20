@@ -12,7 +12,7 @@ public class UCostSearch {
 
     public static void main(String[] args) {
         Help.init(); // Sets all the edges for the graph
-        Search(Help.A);
+        Search(Help.X);
         printPathTo(Help.Y);
     }
 
@@ -42,6 +42,7 @@ public class UCostSearch {
             // Expand node
             for(Edge e : current.neighbors){
                 Node child = e.target;
+                if((current.parent != null)  && current.parent.value.equals(child.value)) continue;
                 int cost = e.cost;
                 System.out.println("Child: " + child + "\t Initial cost: " + cost);
                 child.pathCost = current.pathCost + cost; // aggregate the cost

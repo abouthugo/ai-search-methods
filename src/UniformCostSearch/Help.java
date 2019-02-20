@@ -30,7 +30,7 @@ public class Help {
     public static void init(){
         A.neighbors = new Edge[]{
                 new Edge(C, 10),
-                new Edge(Y, 2)
+                new Edge(Y, 12)
         };
         B.neighbors = new Edge[]{
                 new Edge(Y, 2),

@@ -60,43 +60,7 @@ public class AStar {
         return s;
     }
 
-    // path finders
-    public boolean depthFirst() {
-        if(startState.name.equals(goalState.name)){
-            System.out.println("Start and Goal states are equal");
-            return true;
-        }
-        Stack<Node> nodeStack = new Stack<Node>();
-        ArrayList<Node> visitedNodes = new ArrayList<Node>();
-
-        Node startNode = new Node();
-        startNode.state = startState;
-        startNode.pathCost = 0;
-        nodeStack.add(startNode);
-
-        while(!nodeStack.isEmpty()){
-            Node current = nodeStack.pop();
-            System.out.print(current.state.name + " ");
-            if(current.state.name.equals(goalState.name)){
-                System.out.println(".");
-                System.out.println("Goal state reached with " + current.pathCost + " cost");
-                return true;
-            }
-            else {
-                visitedStates.put(current.state.name, current.state);
-                for(int i = 0; i < current.state.actions.size(); i++) { // right first
-                    //for(int i = current.state.actions.size() - 1; i >= 0; i--) { // left first
-                    Action a = current.state.actions.get(i);
-                    if (visitedStates.get(a.targetState.name) == null) {
-                        nodeStack.add(current.takeAction(a));
-                    }
-                }
-            }
-        }
-        System.out.println("No path found to goal");
-        return false;
-    }
-
+    // path finder
     public boolean aStar() {
         if(startState.name.equals(goalState.name)){
             System.out.println("Start and Goal states are equal");
@@ -168,28 +132,28 @@ public class AStar {
         AStar.State a;
 
 //Load States
-        a = tsp.addState("CP", 15);
+        a = tsp.addState("A", 15);
         //tsp.startState = a;
-        a = tsp.addState("BH", 13);
-        a = tsp.addState("RH", 8);
-        a = tsp.addState("SC", 7);
-        a = tsp.addState("UH", 8);
-        a = tsp.addState("DH", 5);
-        a = tsp.addState("SLG", 0);
+        a = tsp.addState("B", 13);
+        a = tsp.addState("C", 8);
+        a = tsp.addState("D", 7);
+        a = tsp.addState("E", 8);
+        a = tsp.addState("F", 5);
+        a = tsp.addState("G", 0);
         //tsp.goalState = a;
 
 //Load Actions
-        tsp.states.get("CP").addAction("BH",6);
-        tsp.states.get("CP").addAction("SC", 6);
-        tsp.states.get("CP").addAction("UH", 10);
-        tsp.states.get("BH").addAction("SC", 4);
-        tsp.states.get("BH").addAction("RH", 8);
-        tsp.states.get("SC").addAction("RH", 3);
-        tsp.states.get("SC").addAction("UH", 3);
-        tsp.states.get("DH").addAction("SLG", 5);
-        tsp.states.get("SC").addAction("SLG", 10);
-        tsp.states.get("UH").addAction("DH", 7);
-        tsp.states.get("RH").addAction("SLG", 8);
+        tsp.states.get("A").addAction("B",6);
+       // tsp.states.get("A").addAction("D", 6);
+        tsp.states.get("A").addAction("E", 10);
+        tsp.states.get("B").addAction("D", 4);
+        tsp.states.get("B").addAction("C", 8);
+        tsp.states.get("D").addAction("C", 3);
+        tsp.states.get("D").addAction("E", 3);
+        tsp.states.get("F").addAction("G", 5);
+        tsp.states.get("D").addAction("G", 10);
+        tsp.states.get("E").addAction("F", 7);
+        tsp.states.get("C").addAction("G", 8);
 
 //Input Start State
         while (tsp.startState == null) {
@@ -205,7 +169,7 @@ public class AStar {
         }
 
         System.out.println("Trying depth first:");
-        pathFound = tsp.depthFirst();
+      //  pathFound = tsp.depthFirst();
         System.out.println("Trying A*:");
         pathFound = tsp.aStar();
     }

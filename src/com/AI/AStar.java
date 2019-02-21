@@ -146,7 +146,7 @@ public class AStar {
         tsp.states.get("A").addAction("B",6);
        // tsp.states.get("A").addAction("D", 6);
         tsp.states.get("A").addAction("E", 10);
-        tsp.states.get("B").addAction("D", 4);
+        tsp.states.get("B").addAction("D", 5);
         tsp.states.get("B").addAction("C", 8);
         tsp.states.get("D").addAction("C", 3);
         tsp.states.get("D").addAction("E", 3);
